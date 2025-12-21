@@ -32,7 +32,27 @@ The system consists of three main nodes communicating over ROS 2 topics:
 * TurtleBot3 Packages
 * CycloneDDS (`sudo apt install ros-humble-rmw-cyclonedds-cpp`)
 
-### 1. Launch Simulation Environment
+
+ ## ⚙️ Setup & Installation
+To run this project, you need **Ubuntu 22.04** and **ROS 2 Humble**. Follow these steps to install the required dependencies:
+
+### 1. Install TurtleBot3 & Simulation Packages
+Open a terminal and run the following command to install Gazebo, TurtleBot3, and Cartographer packages:
+```bash
+sudo apt update
+sudo apt install -y ros-humble-gazebo-* \
+  ros-humble-cartographer \
+  ros-humble-cartographer-ros \
+  ros-humble-navigation2 \
+  ros-humble-nav2-bringup \
+  ros-humble-turtlebot3*
+```
+### 2. Install CycloneDDS (Recommended)
+```bash
+sudo apt install -y ros-humble-rmw-cyclonedds-cpp
+```
+
+### 3. Launch Simulation Environment
 Initialize the Gazebo world with the Waffle Pi model and CycloneDDS configuration:
 ```bash
 source /opt/ros/humble/setup.bash
@@ -41,7 +61,7 @@ export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
 ```
 
-### 2. Start SLAM (Cartographer)
+###  4. Start SLAM (Cartographer)
 ```bash
 source /opt/ros/humble/setup.bash
 export TURTLEBOT3_MODEL=waffle_pi
@@ -50,7 +70,7 @@ export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 ros2 launch turtlebot3_cartographer cartographer.launch.py use_sim_time:=True
 ```
 
-### Enable Autonomous Navigation
+### 5. Enable Autonomous Navigation
 ```bash
 export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 python3 otonom_surus.py
