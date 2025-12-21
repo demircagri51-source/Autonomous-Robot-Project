@@ -39,3 +39,32 @@ source /opt/ros/humble/setup.bash
 export TURTLEBOT3_MODEL=waffle_pi
 export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
+```
+
+### 2. Start SLAM (Cartographer)
+```bash
+source /opt/ros/humble/setup.bash
+export TURTLEBOT3_MODEL=waffle_pi
+export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+
+ros2 launch turtlebot3_cartographer cartographer.launch.py use_sim_time:=True
+```
+
+### Enable Autonomous Navigation
+```bash
+export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+python3 otonom_surus.py
+```
+### 🎥 Demonstration
+https://www.youtube.com/watch?v=8ffMxJ7dHvs
+
+(Please click the link above to watch the autonomous exploration and mapping process.)
+
+### 📂 Project Structure
+**otonom_surus.py**: Main control logic script (Python).
+
+**proje_haritasi.pgm**: Generated map file (image).
+
+**proje_haritasi.yaml**: Map metadata configuration.
+
+**Proje_Raporu.pdf**: Detailed project report containing system design and results.
